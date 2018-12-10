@@ -101,7 +101,6 @@ class Percheron < Horse
     def run(distancia)
         correr(distancia,vel1,vel2,vel3)
     end
-    
 end
 
 class Andaluz < Horse
@@ -149,15 +148,16 @@ class Race
     def race(distancia,apuesta,*competidores)
         puts "Largo de la pista: #{distancia}"
         competidores.each do |i| 
-            puts "Caballo: #{i.class} Tiempo: #{i.run(distancia)} seg."
+            puts "Caballo: #{i.class} | Tiempo: #{i.run(distancia)} seg."
         end
     end
 end
 
+
 puts "Bienvenido a la carrera de caballos. A continuación, se listan los caballos que correrán en la carrera: "
 
 caballos = [CuartoMilla.new,Appaloosa.new,Clydesdale.new,Frison.new,Shire.new,Percheron.new,Andaluz.new,Teke.new,Mustang.new]
-competidores = caballos.sample(2)
+competidores = caballos.sample(5)
 
 puts "Elija el caballo a apostar: "
 
@@ -168,8 +168,8 @@ end
 apuesta = gets.chomp.to_i
 pistas=[200,300,500]
 
-r = Race.new
-r.race(pistas[rand(0..pistas.length-1)],apuesta,*competidores)
+r = Race.new.race(pistas[rand(0..pistas.length-1)],apuesta,*competidores)
+
 
 
 
