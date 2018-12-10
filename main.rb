@@ -57,7 +57,7 @@ class Chire < Horse
 end
 
 class Race
-    def race(distancia,*competidores)
+    def race(distancia,apuesta,*competidores)
         puts "Largo de la pista: #{distancia}"
         competidores.each do |i| 
             puts "Caballo: #{i.class} Tiempo: #{i.run(distancia)} seg."
@@ -68,11 +68,21 @@ end
 
 
 puts "Bienvenido a la carrera de caballos. A continuación, se listan los caballos que correrán en la carrera: "
-caballos = [Pegorino.new,Appaloosa.new,Chire.new]
 
-puts ""
+caballos = [Pegorino.new,Appaloosa.new,Chire.new]
+competidores = caballos.sample(2)
+
+puts "Elija el caballo a apostar: "
+
+competidores.each_with_index do |i,v| 
+    puts "Numero: #{v+1} | Caballo: #{i.class}"
+end
+
+apuesta = gets.chomp.to_i
 pistas=[200,300,500]
 
 r = Race.new
-r.race(pistas[rand(0..pistas.length-1)],*caballos.sample(2))
+r.race(pistas[rand(0..pistas.length-1)],apuesta,*competidores)
+
+
 
